@@ -1,0 +1,54 @@
+﻿@viewModel DotVVM.Samples.BasicSamples.ViewModels.FeatureSamples.ClientSideMethods.ListOperationsViewModel, DotVVM.Samples.BasicSamples.AspNetCore
+@masterPage Views/Masterpage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h1>Client side methods - List operations</h1>
+
+    <h2>Repeater</h2>
+    <dot:Repeater DataSource="{value: NamesList}">
+        <dot:Literal Text="{value: _this}" />
+    </dot:Repeater>
+
+    <h2>GridView</h2>
+    <dot:GridView DataSource="{value: _root.NamesList}">
+        <dot:GridViewTextColumn ValueBinding="{value:  _this}" />
+        <dot:GridViewTemplateColumn>
+            <ContentTemplate>
+                <dot:Button Text="Remove" Click="{command: _parent.Remove(_this)}">
+                    <PostBack.Handlers>
+                        <dot:ConfirmPostBackHandler Message="Do you really want to delete this item?" />
+                    </PostBack.Handlers>
+                </dot:Button>
+            </ContentTemplate>
+        </dot:GridViewTemplateColumn>
+    </dot:GridView>
+    <br />
+    <br />
+    <h2>Common</h2>
+    <script src="https://gist.github.com/Mrnda/a9259b2efc59257ba0be5311ccf7cfe7.js"></script>
+    <h2>Client side commands</h2>
+    <div class="sample">
+        <dot:Button class="action" Text="Add new item" Click="{command: Add()}" />
+        <script src="https://gist.github.com/Mrnda/82212834379121a03bfef36556732311.js"></script>
+    </div>
+    <div class="sample">
+        <dot:Button class="action" Text="Remove test item" Click="{command: Remove("test")}" />
+        <script src="https://gist.github.com/Mrnda/757cf16a552986732423936b96b83dad.js"></script>
+    </div>
+    <div class="sample">
+        <dot:Button class="action" Text="Clear list" Click="{command: Clear()}" />
+        <script src="https://gist.github.com/Mrnda/92112d7ed4a5c341fe1cd199534c7a86.js"></script>
+    </div>
+    <div class="sample">
+        <dot:Button class="action" Text="Iterate over items" Click="{command: Iterate()}" />
+        <script src="https://gist.github.com/Mrnda/3d659963c62e40d15630edac3b98b109.js"></script>
+    </div>
+    <div class="sample">
+        <dot:Button class="action" Text="Print items to log" Click="{command: PrintNames()}" />
+        <script src="https://gist.github.com/Mrnda/3d659963c62e40d15630edac3b98b109.js"></script>
+    </div>
+    <h2>Server side commands</h2>
+    <dot:Button Text="Save" Click="{command:  SaveViaPostback()}" />
+
+</dot:Content>
